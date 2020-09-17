@@ -48,21 +48,21 @@ matrix:
     - env: TARGET=mips64el-unknown-linux-gnuabi64
     - env: TARGET=mipsel-unknown-linux-gnu
     - env: TARGET=powerpc-unknown-linux-gnu
-    - env: TARGET=powerpc64-unknown-linux-gnu
+    #- env: TARGET=powerpc64-unknown-linux-gnu #same linker error as FreeBSD
     - env: TARGET=powerpc64le-unknown-linux-gnu
     - env: TARGET=s390x-unknown-linux-gnu DISABLE_TESTS=1
     - env: TARGET=x86_64-unknown-linux-gnu
     - env: TARGET=x86_64-unknown-linux-musl
 
     # OSX
-    - env: TARGET=i686-apple-darwin
-      os: osx
+    #- env: TARGET=i686-apple-darwin #errors
+    #  os: osx
     - env: TARGET=x86_64-apple-darwin
       os: osx
 
     # *BSD
-    - env: TARGET=i686-unknown-freebsd DISABLE_TESTS=1
-    - env: TARGET=x86_64-unknown-freebsd DISABLE_TESTS=1
+    #- env: TARGET=i686-unknown-freebsd DISABLE_TESTS=1 # It definitely compiles to FreeBSD (on my setup) but linking with `cc` in the trust/cross script fails
+    #- env: TARGET=x86_64-unknown-freebsd DISABLE_TESTS=1
     - env: TARGET=x86_64-unknown-netbsd DISABLE_TESTS=1
 
     # Windows
@@ -123,11 +123,11 @@ before_cache:
   # Travis can't cache files that are not readable by "others"
   - chmod -R a+r $HOME/.cargo
 
-branches:
-  only:
+#branches:
+#  only:
     # release tags
-    - /^v\d+\.\d+\.\d+.*$/
-    - travis #master
+#    - /^v\d+\.\d+\.\d+.*$/
+#    - travis #master
 
 notifications:
   email:
