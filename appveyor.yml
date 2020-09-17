@@ -76,7 +76,6 @@ after_build:
 
 deploy:
   release: $APPVEYOR_REPO_TAG_NAME
-  description: $APPVEYOR_REPO_COMMIT_MESSAGE
   auth_token:
     secure: DlM2I0MGgU7nN5IsxRNDlssXf2C1vM7b2dil09+e6dAmrBk3UajqBVahi1TVaZYB
   provider: GitHub
